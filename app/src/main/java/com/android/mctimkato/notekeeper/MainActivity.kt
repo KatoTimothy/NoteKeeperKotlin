@@ -1,7 +1,11 @@
 package com.android.mctimkato.notekeeper
 
 import android.os.Bundle
+import android.content.Intent
 import android.view.LayoutInflater
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
 import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
@@ -18,8 +22,9 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         binding = ActivityMainBinding.inflate(LayoutInflater.from(this))
-        setContentView(binding.root)
         setSupportActionBar(binding.toolbar)
+
+        setContentView(binding.root)
 
         //get nav host fragment
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment)
@@ -45,4 +50,5 @@ class MainActivity : AppCompatActivity() {
 
         return NavigationUI.navigateUp(navController, binding.drawerLayout)
     }
+
 }
