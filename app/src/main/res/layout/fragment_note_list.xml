@@ -8,7 +8,6 @@
         <variable
             name="noteListViewModel"
             type="com.android.mctimkato.notekeeper.notelist.NoteListViewModel" />
-
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -29,9 +28,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:listitem="@layout/item_list_note"
-            app:listData="@{noteListViewModel.notes}">
-        </androidx.recyclerview.widget.RecyclerView>
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fab"
