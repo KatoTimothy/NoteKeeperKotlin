@@ -38,7 +38,7 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:tint="@color/plural_sight_orange"
+                    app:tint="?attr/colorPrimary"
                     tools:srcCompat="@drawable/ic_outline_edit" />
 
                 <TextView
