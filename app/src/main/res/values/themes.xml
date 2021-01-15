@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.NoteKeeper.DayNight" parent="Base.Theme.NoteKeeper">
+        <!--        color-->
+        <item name="colorPrimary">@color/primaryColor</item>
+        <item name="colorPrimaryDark">@color/primaryDarkColor</item>
+        <item name="colorAccent">@color/secondaryColor</item>
+
+        <!--        new attributes-->
+        <item name="colorPrimaryVariant">@color/primaryDarkColor</item>
+        <item name="colorSecondary">@color/secondaryColor</item>
+        <item name="colorSecondaryVariant">@color/secondaryDarkColor</item>
+
+        <item name="colorSurface">@android:color/background_light</item>
+
+        <item name="colorOnPrimary">@color/primaryTextColor</item>
+        <item name="colorOnSecondary">@color/secondaryTextColor</item>
+        <item name="colorOnBackground">@android:color/white</item>
+        <item name="colorOnSurface">@android:color/white</item>
+
+    </style>
+
+    <!--    NoteKeeper Base theme-->
+    <style name="Base.Theme.NoteKeeper" parent="Theme.MaterialComponents.DayNight.DarkActionBar.Bridge">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+
+        <item name="android:navigationBarColor">@android:color/black</item>
+
+    </style>
+</resources>
