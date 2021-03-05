@@ -17,28 +17,28 @@ interface NotesDao {
     fun get(id: Long): Flow<Note>
 
     //Inserts note. Ignores insert if given note is identical to one in the table
-    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun put(note: Note): Long
 
     //Inserts note. Ignores insert if given note is identical to one in the table
-    @Insert(onConflict = OnConflictStrategy.IGNORE)
-    suspend fun putAll(notes: List<Note>): Long
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun putAll(notes: List<Note>)
 
     //Inserts note. Ignores insert if given note is identical to one in the table
-    @Insert(onConflict = OnConflictStrategy.IGNORE)
-    suspend fun putVarying(vararg notes: Note): Long
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun putVariableListofNotes(vararg notes: Note)
 
     //updates given course
     @Update
     suspend fun update(note: Note)
 
     //deletes all notes given in the list
-    @Delete
-    suspend fun deleteAll(notes: List<Note>)
+    @Query("DELETE FROM note_table")
+    suspend fun deleteAll()
 
     @Query(
-        "SELECT note_table.id, course_table.title AS courseTitle,  note_table.title  FROM  note_table " +
-                "LEFT JOIN course_table ON note_table.courseId = course_table.id"
+        "SELECT note_table.id As id , course_table.title as courseTitle,  note_table.summary AS summary  " +
+                "FROM  note_table LEFT JOIN course_table ON note_table.courseId = course_table.id"
     )
     fun getExpandedNote(): Flow<List<ExpandedNote>>
 }
@@ -62,6 +62,6 @@ interface CoursesDao {
     fun get(id: String): Flow<Course>
 
     //Deletes all given list items from course_table
-    @Delete
-    suspend fun deleteAll(courses: List<Course>)
+    @Query("DELETE FROM note_table")
+    suspend fun deleteAll()
 }

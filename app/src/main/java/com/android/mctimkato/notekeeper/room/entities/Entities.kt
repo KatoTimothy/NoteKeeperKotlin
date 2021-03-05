@@ -9,7 +9,7 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "note_table")
 data class Note(
     @PrimaryKey(autoGenerate = true)
-    val id: Int,
+    val id: Long,
     val courseId: String,
     val title: String?,
     val summary: String?
@@ -27,7 +27,7 @@ data class Course(
 
 //Includes details of note_table and course_table
 data class ExpandedNote(
-    val id: Int,
+    val id: Long,
     var courseTitle: String?,
     var summary: String?
 )
