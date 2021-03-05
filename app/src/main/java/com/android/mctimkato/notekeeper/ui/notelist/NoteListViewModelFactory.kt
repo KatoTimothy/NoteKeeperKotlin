@@ -2,15 +2,13 @@ package com.android.mctimkato.notekeeper.ui.notelist
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.android.mctimkato.notekeeper.data.DataManager
-import java.lang.IllegalArgumentException
 
 @Suppress("UNCHECKED_CAST")
-class NoteListViewModelFactory(private val dataSource: DataManager) : ViewModelProvider
+class NoteListViewModelFactory: ViewModelProvider
 .Factory {
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(NoteListViewModel::class.java)) {
-            return NoteListViewModel(dataSource) as T
+            return NoteListViewModel() as T
         }
         throw IllegalArgumentException("Unknown ViewModel class")
     }
