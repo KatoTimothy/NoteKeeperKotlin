@@ -24,7 +24,7 @@
         android:id="@+id/note_fragment"
         android:name="com.android.mctimkato.notekeeper.ui.note.NoteFragment"
         android:label="@string/label_edit_note"
-        tools:layout="@layout/fragment_note" >
+        tools:layout="@layout/fragment_note_details" >
         <argument
             android:name="notePosition"
             app:argType="integer"

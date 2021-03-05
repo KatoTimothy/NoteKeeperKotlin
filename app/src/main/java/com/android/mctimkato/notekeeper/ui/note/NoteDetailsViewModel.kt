@@ -5,7 +5,7 @@ import androidx.lifecycle.ViewModel
 /*
 * ViewModel for the NoteFragment
 * */
-class NoteViewModel : ViewModel() {
+class NoteDetailsViewModel : ViewModel() {
 
 
 }

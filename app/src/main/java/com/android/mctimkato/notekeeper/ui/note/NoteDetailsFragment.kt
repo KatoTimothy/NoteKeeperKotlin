@@ -7,12 +7,12 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.android.mctimkato.notekeeper.data.NoteInfo
-import com.android.mctimkato.notekeeper.databinding.FragmentNoteBinding
+import com.android.mctimkato.notekeeper.databinding.FragmentNoteDetailsBinding
 
 class NoteFragment : Fragment() {
-    private lateinit var binding: FragmentNoteBinding
+    private lateinit var binding: FragmentNoteDetailsBinding
 
-    private lateinit var noteViewModel: NoteViewModel
+    private lateinit var noteViewModel: NoteDetailsViewModel
 
     private lateinit var arguments: NoteFragmentArgs
 
@@ -24,14 +24,14 @@ class NoteFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        binding = FragmentNoteBinding.inflate(inflater)
+        binding = FragmentNoteDetailsBinding.inflate(inflater)
 
         arguments = NoteFragmentArgs.fromBundle(requireArguments())
 
         binding.lifecycleOwner = viewLifecycleOwner
 
         //initialize the viewModel
-        noteViewModel = ViewModelProvider(this).get(NoteViewModel::class.java)
+        noteViewModel = ViewModelProvider(this).get(NoteDetailsViewModel::class.java)
 
         //assign a viewModel to binding object
 
