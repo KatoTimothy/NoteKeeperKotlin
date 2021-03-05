@@ -7,7 +7,7 @@ import androidx.room.PrimaryKey
 * Represents a single entry of note in the database
 * */
 @Entity(tableName = "note_table")
-data class NoteEntity(
+data class Note(
     @PrimaryKey(autoGenerate = true)
     val id: Int,
     val courseId: String,
@@ -19,7 +19,7 @@ data class NoteEntity(
 * Represents a single entry of course in the database
 * */
 @Entity(tableName = "course_table")
-data class CourseEntity(
+data class Course(
     @PrimaryKey
     val id: String,
     val title: String
