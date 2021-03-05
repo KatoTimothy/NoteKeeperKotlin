@@ -4,11 +4,18 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import com.android.mctimkato.notekeeper.room.dao.CoursesDao
+import com.android.mctimkato.notekeeper.room.dao.NotesDao
 import com.android.mctimkato.notekeeper.room.entities.Course
 import com.android.mctimkato.notekeeper.room.entities.Note
 
 @Database(entities = [Note::class, Course::class], version = 1, exportSchema = false)
 abstract class NotekeeperDatabase : RoomDatabase() {
+
+    abstract val notesDao: NotesDao
+    abstract val courseDao: CoursesDao
+
+
     companion object {
         @Volatile
         var INSTANCE: NotekeeperDatabase? = null
