@@ -1,52 +1,53 @@
 package com.android.mctimkato.notekeeper.database.dao
 
 import androidx.room.*
-import com.android.mctimkato.notekeeper.database.entities.CourseEntity
-import com.android.mctimkato.notekeeper.database.entities.NoteEntity
+import com.android.mctimkato.notekeeper.database.entities.Course
+import com.android.mctimkato.notekeeper.database.entities.Note
 import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface NotesDao {
     //fetches notes sorted sorted by title
     @Query("SELECT * FROM note_table ORDER BY title")
-    fun getAll(): List<NoteEntity>
+    fun getAll(): Flow<List<Note>>
 
     //fetches note given its id
     @Query("SELECT * FROM note_table WHERE id = :id")
-    fun get(id: Long): Flow<NoteEntity>
+    fun get(id: Long): Flow<Note>
 
     //Inserts note. Ignores insert if given note is identical to one in the table
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    suspend fun insert(note: NoteEntity): Long
+    suspend fun insert(note: Note): Long
 
     //updates given course
     @Update
-    suspend fun update(note: NoteEntity)
+    suspend fun update(note: Note)
 
     //deletes all notes given in the list
     @Delete
-    suspend fun deleteAll(notes: List<NoteEntity>)
+    suspend fun deleteAll(notes: List<Note>)
+
 }
 
 @Dao
 interface CoursesDao {
     //adds given course to courses table
     @Insert
-    suspend fun add(course: CourseEntity)
+    suspend fun add(course: Course)
 
     //adds a given list of courses in the table
     @Insert
-    suspend fun addAll(courses: List<CourseEntity>)
+    suspend fun addAll(courses: List<Course>)
 
     //fetches all courses ordered by id
     @Query("SELECT * FROM course_table")
-    fun getAll(): List<CourseEntity>
+    fun getAll(): List<Course>
 
     //fetches particular course given its id
     @Query("SELECT * FROM course_table WHERE id = :id")
-    fun get(id: String): Flow<CourseEntity>
+    fun get(id: String): Flow<Course>
 
     //Deletes all given list items from course_table
     @Delete
-    suspend fun deleteAll(courses: List<CourseEntity>)
+    suspend fun deleteAll(courses: List<Course>)
 }
