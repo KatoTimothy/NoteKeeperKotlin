@@ -11,8 +11,8 @@ data class Note(
     @PrimaryKey(autoGenerate = true)
     val id: Int,
     val courseId: String,
-    val title: String,
-    val summary: String
+    val title: String?,
+    val summary: String?
 )
 
 /*
@@ -22,5 +22,12 @@ data class Note(
 data class Course(
     @PrimaryKey
     val id: String,
-    val title: String
+    val title: String?
+)
+
+//Includes details of note_table and course_table
+data class ExpandedNote(
+    val id: Int,
+    var courseTitle: String?,
+    var summary: String?
 )

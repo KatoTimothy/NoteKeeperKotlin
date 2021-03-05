@@ -2,6 +2,7 @@ package com.android.mctimkato.notekeeper.database.dao
 
 import androidx.room.*
 import com.android.mctimkato.notekeeper.database.entities.Course
+import com.android.mctimkato.notekeeper.database.entities.ExpandedNote
 import com.android.mctimkato.notekeeper.database.entities.Note
 import kotlinx.coroutines.flow.Flow
 
@@ -27,6 +28,11 @@ interface NotesDao {
     @Delete
     suspend fun deleteAll(notes: List<Note>)
 
+    @Query(
+        "SELECT note_table.id, course_table.title AS courseTitle,  note_table.title  FROM  note_table " +
+                "LEFT JOIN course_table ON note_table.courseId = course_table.id"
+    )
+    fun getExpandedNote(): Flow<List<ExpandedNote>>
 }
 
 @Dao
