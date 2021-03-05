@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/nav_notes"
-        android:name="com.android.mctimkato.notekeeper.notelist.NoteListFragment"
+        android:name="com.android.mctimkato.notekeeper.ui.notelist.NoteListFragment"
         android:label="@string/menu_notes"
         tools:layout="@layout/fragment_note_list">
         <action
@@ -22,7 +22,7 @@
         tools:layout="@layout/fragment_courses" />
     <fragment
         android:id="@+id/note_fragment"
-        android:name="com.android.mctimkato.notekeeper.note.NoteFragment"
+        android:name="com.android.mctimkato.notekeeper.ui.note.NoteFragment"
         android:label="@string/label_edit_note"
         tools:layout="@layout/fragment_note" >
         <argument

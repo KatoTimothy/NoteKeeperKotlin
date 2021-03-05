@@ -6,7 +6,7 @@ import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.android.mctimkato.notekeeper.data.CourseInfo
 import com.android.mctimkato.notekeeper.data.NoteInfo
-import com.android.mctimkato.notekeeper.notelist.NoteAdapter
+import com.android.mctimkato.notekeeper.ui.notelist.NoteAdapter
 
 //Used to bind recycler view with data
 @BindingAdapter("listData")
