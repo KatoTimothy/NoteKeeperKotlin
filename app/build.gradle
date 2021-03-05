@@ -77,8 +77,13 @@ dependencies {
     //Hilt
 
 
-    //Testing
+    //Core testing
     testImplementation 'junit:junit:4.12'
+    testImplementation 'androidx.test:core:1.0.1'
+
+    //assertion
+    testImplementation 'com.google.truth:truth:1.1'
+
 
     //UI testing
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
