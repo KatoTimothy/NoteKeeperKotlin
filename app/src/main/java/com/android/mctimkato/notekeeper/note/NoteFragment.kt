@@ -43,11 +43,6 @@ class NoteFragment : Fragment() {
         //assign a viewModel to binding object
         binding.noteViewModel = noteViewModel
 
-        val editing: Editing = if (arguments.notePosition >= 0) Editing.EXISTING else Editing.NEW
-
-        if (editing == Editing.EXISTING) {
-            binding.note = noteViewModel.get(arguments.notePosition)
-        }
         return binding.root
     }
 
@@ -63,16 +58,11 @@ class NoteFragment : Fragment() {
     * Automatically saves changes in the note when user hits back button
     * */
     private fun saveNote() {
-        val selectedCourse = binding.spinnerCourses.selectedItem as CourseInfo
-        val title = binding.noteTitle.text.toString()
-        val text = binding.descriptionText.text.toString()
 
-        note = NoteInfo(selectedCourse, title, text)
-
-        noteViewModel.addData(arguments.notePosition, selectedCourse, title, text)
     }
 }
 
-enum class Editing {
-    EXISTING, NEW
+//Stores state of wether we editing new or existing note
+enum class EditingState {
+    EXISTING_NOTE, NEW_NOTE
 }
