@@ -18,7 +18,15 @@ interface NotesDao {
 
     //Inserts note. Ignores insert if given note is identical to one in the table
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    suspend fun insert(note: Note): Long
+    suspend fun put(note: Note): Long
+
+    //Inserts note. Ignores insert if given note is identical to one in the table
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    suspend fun putAll(notes: List<Note>): Long
+
+    //Inserts note. Ignores insert if given note is identical to one in the table
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    suspend fun putVarying(vararg notes: Note): Long
 
     //updates given course
     @Update
