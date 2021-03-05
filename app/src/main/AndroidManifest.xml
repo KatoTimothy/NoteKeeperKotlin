@@ -10,9 +10,7 @@
         android:supportsRtl="true"
         android:name=".NoteKeeperApplication"
         android:theme="@style/Theme.NoteKeeper.DayNight">
-        <activity
-            android:name=".SettingsActivity"
-            android:label="@string/title_activity_settings" />
+        
         <activity
             android:name=".MainActivity"
             android:label="@string/title_activity_main">
