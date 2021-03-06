@@ -11,6 +11,7 @@ import com.android.mctimkato.notekeeper.room.dao.NotesDao
 import com.android.mctimkato.notekeeper.room.entities.Note
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import org.junit.After
@@ -65,13 +66,14 @@ class NoteKeeperDatabaseTest {
     @Throws(Exception::class)
     fun insertingOneNoteReturnsThatSingleNote() {
 
+        var testNote: Flow<Note>?
         CoroutineScope(Dispatchers.IO).launch {
 
             notesDao.put(firstNote)
 
-            val testNote = notesDao.get(1)
+            testNote = notesDao.get(1)
 
-            testNote.collect {
+            testNote?.collect {
 //                assertEquals(it, firstNote)
 //                assertEquals(firstNote.courseId, it.courseId)
                 assertEquals(it.courseId, 1)
