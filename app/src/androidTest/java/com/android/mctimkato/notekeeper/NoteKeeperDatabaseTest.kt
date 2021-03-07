@@ -66,9 +66,9 @@ class NoteKeeperDatabaseTest {
             val testNote = notesDao.getNoteWithId(1)
 
             testNote.collect {
-                assertEquals(it, firstNote)
-                assertEquals(firstNote.courseId, it.courseId)
-                assertEquals(it.courseId, "kotlin_coroutines")
+//                assertEquals(it, firstNote)
+//                assertEquals(firstNote.courseId, it.courseId)
+                assertEquals(it.courseId, firstNote.courseId)
             }
         }
 
@@ -82,7 +82,7 @@ class NoteKeeperDatabaseTest {
 
             notesDao.insertVariableListofNotes(firstNote, secondNote)
 
-            notesDao.getAllNotes().collect {noteList->
+            notesDao.getAllNotes().collect { noteList ->
 
                 assertEquals(noteList.size, 2)
             }
