@@ -66,8 +66,8 @@ class NoteKeeperDatabaseTest {
             val testNote = notesDao.getNoteWithId(1)
 
             testNote.collect {
-//                assertEquals(it, firstNote)
-//                assertEquals(firstNote.courseId, it.courseId)
+                assertEquals(it, firstNote)
+                assertEquals(firstNote.courseId, it.courseId)
                 assertEquals(it.courseId, "kotlin_coroutines")
             }
         }
