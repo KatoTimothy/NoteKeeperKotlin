@@ -4,19 +4,14 @@ import android.content.Context
 import androidx.room.Room
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
-import androidx.test.platform.app.InstrumentationRegistry
 import com.android.mctimkato.notekeeper.room.NotekeeperDatabase
 import com.android.mctimkato.notekeeper.room.dao.CoursesDao
 import com.android.mctimkato.notekeeper.room.dao.NotesDao
 import com.android.mctimkato.notekeeper.room.entities.Note
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 import org.junit.After
 import org.junit.Assert.assertEquals
-import org.junit.Assert.assertNotEquals
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -49,7 +44,6 @@ class NoteKeeperDatabaseTest {
 
         //create an in memory database
         database = Room.inMemoryDatabaseBuilder(context, NotekeeperDatabase::class.java)
-            .allowMainThreadQueries()
             .build()
 
         notesDao = database.notesDao
@@ -66,17 +60,15 @@ class NoteKeeperDatabaseTest {
     @Throws(Exception::class)
     fun insertingOneNoteReturnsThatSingleNote() {
 
-        var testNote: Flow<Note>?
-        CoroutineScope(Dispatchers.IO).launch {
+        runBlocking {
 
             notesDao.put(firstNote)
+            val testNote = notesDao.getNoteWithId(1)
 
-            testNote = notesDao.get(1)
-
-            testNote?.collect {
+            testNote.collect {
 //                assertEquals(it, firstNote)
 //                assertEquals(firstNote.courseId, it.courseId)
-                assertEquals(it.courseId, 1)
+                assertEquals(it.courseId, "kotlin_coroutines")
             }
         }
 
@@ -86,13 +78,13 @@ class NoteKeeperDatabaseTest {
     @Throws(Exception::class)
     fun insertingVariableListofTwoNotesRetrieveTwoNotesBack() {
 
-        CoroutineScope(Dispatchers.IO).launch {
+        runBlocking {
 
-            notesDao.putVariableListofNotes(firstNote, secondNote)
+            notesDao.insertVariableListofNotes(firstNote, secondNote)
 
-            notesDao.getAll().collect {
+            notesDao.getAllNotes().collect {noteList->
 
-                assertEquals(it.size, 1)
+                assertEquals(noteList.size, 2)
             }
 
         }
