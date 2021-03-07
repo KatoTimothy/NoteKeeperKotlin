@@ -10,11 +10,11 @@ import kotlinx.coroutines.flow.Flow
 interface NotesDao {
     //fetches notes sorted sorted by title
     @Query("SELECT * FROM note_table ORDER BY title")
-    fun getAll(): Flow<List<Note>>
+    fun getAllNotes(): Flow<List<Note>>
 
     //fetches note given its id
     @Query("SELECT * FROM note_table WHERE id = :id")
-    fun get(id: Long): Flow<Note>
+    fun getNoteWithId(id: Long): Flow<Note>
 
     //Inserts note. Ignores insert if given note is identical to one in the table
     @Insert(onConflict = OnConflictStrategy.REPLACE)
@@ -26,7 +26,7 @@ interface NotesDao {
 
     //Inserts note. Ignores insert if given note is identical to one in the table
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun putVariableListofNotes(vararg notes: Note)
+    suspend fun insertVariableListofNotes(vararg notes: Note)
 
     //updates given course
     @Update
